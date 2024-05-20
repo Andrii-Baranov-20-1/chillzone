@@ -47,3 +47,9 @@ $headers = "MIME-Version: 1.0" . "\r\n" .
 "Reply-To: " . $admin_email . "" . "\r\n";
 
 mail($admin_email, adopt($form_subject), $message, $headers );
+
+if (mail($admin_email, adopt($form_subject), $message, $headers)) {
+    echo "<script>console.log('Email sent successfully');</script>";
+} else {
+    echo "<script>console.log('Email sending failed');</script>";
+}
