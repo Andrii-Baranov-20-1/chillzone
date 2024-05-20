@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!---css посилання--->
+    <link rel="stylesheet" type="text/css" href="css/contact.css">
+    <link rel="shortcut icon" href="./img/icons/avatar.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <!---посилання на гугл-шрифти--->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <title>ChillZone</title>
+</head>
+<body>
+    <header class="header">
+        <a class="header-logo" href="./index.html">
+            <img class="header-logo-image" src="./img/icons/logo.png" alt="Goodzone logo" width="120" height="36" loading="lazy">
+        </a>
+        <nav class="header-menu">
+            <ul class="header-menu-list">
+                <li class="header-menu-item">
+                    <a class="header-menu-link" href="./index.html">Готель</a>
+                </li>
+                <li class="header-menu-item">
+                    <a class="header-menu-link" href="./about.html">Про нас</a>
+                </li>
+                <li class="header-menu-item">
+                    <a class="header-menu-link" href="./contact.html">Контакти</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <a class="header-button button" href="tel:+1234567890">Замовити</a>
+        </div>
+    </header>
+    <main class="main">
+        <section class="section-first">
+            <div class="section-about">
+                <h1 class="section-main-first-text">Зв'яжіться з нами!</h1>
+                <p class="section-main-second-text">Будь ласка, заповніть форму нижче, щоб зв'язатися з нами</p>
+                <form class="input-wrapper" action="getform.php" method="get">
+                    <input type="hidden" name="project_name" value="Chill Zone">
+                    <input type="hidden" name="admin_email" value="235088@duan.edu.ua">
+                    <input type="hidden" name="form_subject" value="input-wrapper">
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="first_name">Ім'я:</label>
+                            <input class="first_name" type="text" id="first_name" name="first_name" />
+                        </div>
+                        <div class="input-group">
+                            <label for="user_email">E-mail:</label>
+                            <input class="user_email" type="email" id="user_email" name="user_email" />
+                        </div>
+                    </div>
+                    <label for="user-message">Повідомлення:</label>
+                    <!--                    <input class="user-send" type="text" id="user_send" name="user_send" /><br />-->
+                    <textarea class="user-message" id="user-message" name="user-message" rows="4" cols="50"></textarea>
+                    <input class="submit" type="submit" value="Надіслати" />
+                </form>
+                <!--                <a href="#" target="_blank">Бронюй зараз</a>-->
+                <!--                <a class="section-first-button" href="tel:+1234567890">Бронюй зараз</a>-->
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer-menu">
+            <p class="footer-rights">© 2007-2024 ООО «ChillZone»</p>
+        </div>
+        <nav class="footer-menu-icons">
+            <ul class="footer-menu-icons-list">
+                <li class="footer-menu-link">
+                    <a href="tel:+1234567890">
+                        <img src="img/icons/phone-squared.png">
+                    </a>
+                </li>
+                <li class="footer-menu-link">
+                    <a href="/">
+                        <img src="img/icons/instagram-squared.png">
+                    </a>
+                </li>
+                <li class="footer-menu-link">
+                    <a href="/">
+                        <img src="img/icons/facebook-squared.png">
+                    </a>
+                </li>
+                <li class="footer-menu-link">
+                    <a href="/">
+                        <img src="img/icons/youtube-squared.png">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+</html>

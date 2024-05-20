@@ -1,0 +1,436 @@
+/*--- Нормалізація блокової моделі ---*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/*--- Прибираємо внутрішні відступи зліва тегам списків, у яких є атрибут class ---*/
+:where(ul, ol):where([class]) {
+    padding-left: 0;
+}
+
+/*--- Прибираємо зовнішні відступи body і двом іншим тегам, у яких є атрибут class ---*/
+body,
+:where(blockquote, figure):where([class]) {
+    margin: 0;
+}
+
+/*--- Прибираємо зовнішні відступи вертикалі потрібним тегам, у яких є атрибут class ---*/
+:where(
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ul,
+  ol,
+  dl
+):where([class]) {
+    margin-block: 0;
+}
+
+:where(dd[class]) {
+    margin-left: 0;
+}
+
+:where(fieldset[class]) {
+    margin-left: 0;
+    padding: 0;
+    border: none;
+}
+
+/*--- Прибираємо стандартний маркер маркованого списку, у якого є атрибут class ---*/
+:where(ul[class]) {
+    list-style: none;
+}
+
+/*---
+  Обнуляємо вертикальні зовнішні відступи параграфа,
+  оголошуємо локальну змінну для зовнішнього відступу вниз,
+  щоб уникнути взаємодії з більш складним селектором
+---*/
+p {
+    --paragraphMarginBottom: 24px;
+
+    margin-block: 0;
+}
+
+/*---
+    Зовнішній відступ вниз для параграфа без атрибута class,
+    який розташований не останнім серед своїх сусідніх елементів
+---*/
+p:where(:not([class]):not(:last-child)) {
+    margin-bottom: var(--paragraphMarginBottom);
+}
+
+
+/*--- Спрощуємо роботу із зображеннями ---*/
+img {
+    display: block;
+    max-width: 100%;
+}
+
+/*--- Успадковуємо властивості шрифт для полів введення ---*/
+input,
+textarea,
+select,
+button {
+    font: inherit;
+}
+
+/*---
+    Стане в нагоді в більшості ситуацій
+    (коли, наприклад, потрібно буде "притиснути" футер до низу сайту)
+---*/
+html {
+    height: 100%;
+}
+
+/*--- Плавний скрол ---*/
+html,
+:has(:target) {
+    scroll-behavior: smooth;
+}
+
+body {
+    /*---
+        Стане в нагоді в більшості ситуацій
+        (коли, наприклад, потрібно буде "притиснути" футер до низу сайту)
+    ---*/
+    min-height: 100%;
+    /*--- Унифицированный интерлиньяж ---*/
+    line-height: 1.5;
+}
+
+/*--- Приводимо до єдиного кольору svg-елементи ---*/
+svg *[fill] { fill: currentColor }
+svg *[stroke] { stroke: currentColor }
+
+/*--- Чинимо баг затримки зміни кольору під час взаємодії зі svg-елементами ---*/
+svg * {
+    transition-property: fill, stroke;
+}
+
+/*---
+  Видаляємо всі анімації та переходи для людей,
+  які вважають за краще їх не використовувати
+---*/
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+/*--- Глобальная css переменная ---*/
+:root {
+    --color-dark: #2A2D36;
+    --color-light: #E3D9CF;
+
+    --border: 0.063rem solid var(--color-dark);
+
+    --font-family-base: 'Open Sans', sans-serif;
+
+    --container-width: 81.25rem;
+    --container-padding-x: 0.938rem;
+
+    --transition-duration: 0.2s;
+}
+body{
+    font-family: var(--font-family-base);
+    color: var(--color-dark);
+    font-size: 1rem;
+    /*background: url('../img/bg.png') no-repeat center/cover;*/
+    background-color: var(--color-light);
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 1.25rem;
+    padding-inline: 9.375rem;
+    background-color: rgba(227,217,207,50%);
+    backdrop-filter: blur(1.25rem);
+    z-index: 1000;
+}
+.header-logo {
+    flex-shrink: 0;
+}
+.header-menu-list {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 4.875rem;
+}
+.header-menu-link {
+    display: inline-flex;
+    align-items: center;
+    height: 3.125rem;
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 0.125rem solid transparent;
+    transition: all .55s ease;
+}
+.header-menu-link:hover {
+    border-bottom: 0.125rem solid var(--color-dark);
+}
+.header-menu a {
+    color: var(--color-dark);
+}
+.header-actions {
+    display: flex;
+    column-gap: 2.5rem;
+}
+.button {
+    width: 7.6rem;
+    height: 2.25rem;
+    color: var(--color-light);
+    display: inline-flex;
+    align-items: center;
+    /*padding-inline: 5px;*/
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 500;
+    white-space: nowrap;
+    line-height: 2.2;
+    background-color: var(--color-dark);
+    border: none;
+    transition: all .55s ease;
+    text-decoration: none;
+}
+.button:hover {
+    background-color: var(--color-light);
+    border: var(--border);
+    color: var(--color-dark);
+}
+.main{
+    padding-top: 3.125rem;
+}
+.section-first {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 3.125rem);
+    min-height: 64.375rem;
+    position: relative;
+    align-items: center; /* Выравнивание по вертикали */
+    justify-content: center;
+    padding-inline: 9.375rem;
+    padding-top: 3.125rem;
+    gap: 2rem;
+    background: url('../img/bg.png') no-repeat center/cover;
+    color: var(--color-light);
+}
+.section-about {
+    width: 60%;
+    height: auto;
+    padding-inline: 3.75rem;
+    padding-top: 3.75rem;
+    padding-bottom: 3.75rem;
+    text-align: center;
+    /*border-radius: 30px;*/
+    background-color: rgba(42, 45, 54, 0.56);
+    backdrop-filter: blur(1.25rem);
+}
+input {
+    width: 100%;
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    border: none;
+    height: 2rem;
+}
+textarea{
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    height: 19.188rem;
+    justify-content: unset;
+    align-items: unset;
+    resize: none;
+    margin-bottom: 2rem;
+}
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    /*padding-inline: 120px;*/
+    /*padding-top: 52px;*/
+}
+
+.input-wrapper label {
+    font-size: 1rem;
+    margin-right: auto;
+}
+.user-message{
+    height: auto;
+    min-height: 6.25rem;
+}
+.submit {
+    width: 100%;
+    height: 3.125rem;
+    color: var(--color-light);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /*padding-inline: 20px;*/
+    font-size: 1rem;
+    font-weight: 500;
+    white-space: nowrap;
+    line-height: 2;
+    background-color: var(--color-dark);
+    border: none;
+    /*border-radius: var(--border-radius);*/
+    transition: all .55s ease;
+    text-decoration: none;
+}
+.submit:hover {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    border: var(--border);
+}
+label{
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+.input-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0px; /* Расстояние между input элементами */
+}
+.input-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.footer {
+    width: 100%;
+    height: 3.125rem;
+    /*position: absolute;*/
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    padding-inline: 9.375rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+.footer-menu {
+    display: flex;
+    align-items: center;
+}
+.footer-menu-icons-list{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1rem;
+}
+.footer-menu-link{
+    display: inline-flex;
+    align-items: center;
+    height: 3.125rem;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    border-bottom: 0.125rem solid transparent;
+    transition: all .55s ease;
+}
+.footer-menu-link img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+/*---Настільні комп'ютери та ноутбуки---*/
+@media (max-width: 1280px){
+}
+/*---Планшети (альбомна орієнтація)---*/
+@media (max-width: 1024px) {
+    .header {
+        flex-wrap: wrap;
+        row-gap: 0.625rem;
+        padding-inline: 3.125rem;
+    }
+    .header-menu-list {
+        column-gap: 2.125rem;
+    }
+    .section-first {
+        padding-inline: 3.125rem;
+    }
+    .footer{
+        padding-inline: 3.125rem;
+    }
+    .section-about {
+        width: 100%;
+    }
+}
+/*---Планшети (альбомна орієнтація)---*/
+@media (max-width: 768px) {
+    .header {
+        flex-wrap: wrap;
+        row-gap: 0.625rem;
+        padding-top: 0.938rem;
+        padding-inline: 0.938rem;
+    }
+    .header-menu {
+        order: 1;
+        flex-basis: 100%;
+    }
+    .header-menu-list {
+        column-gap: 3.375rem;
+        justify-content: center;
+    }
+    .header-menu-link {
+        height: 3.125rem;
+        color: var(--color-dark);
+    }
+    .header-menu-link:hover {
+        border-bottom: 0.125rem solid var(--color-dark);
+    }
+    .section-first {
+        padding-inline: 0.938rem;
+    }
+    .main{
+        padding-top: 6.875rem;
+    }
+    .footer{
+        padding-inline: 0.938rem;
+    }
+}
+/*@media (max-height: 768px) {
+    .section-menu p{
+        display: none;
+    }
+}*/
+/*---Мобільні пристрої (альбомна орієнтація)---*/
+@media (max-width: 667px) {
+    .header-menu-list {
+        column-gap: 2.75rem;
+    }
+    .header-menu-link {
+        height: 2.5rem;
+        font-size: 0.875rem;
+        color: var(--color-dark);
+    }
+    .main{
+        padding-top: 6.25rem;
+    }
+    .section-about {
+        padding-inline: 0.938rem;
+    }
+    .section-main-second-text {
+        display: none;
+    }
+    .footer{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        min-height: 6.25rem;
+    }
+}
+/*--- Мобільні пристрої (портретна орієнтація) ---*/
+@media (max-width: 375px) {
+
+}
