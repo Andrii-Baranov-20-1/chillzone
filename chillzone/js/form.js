@@ -7,9 +7,9 @@ $(document).ready(function() {
            url: "mail.php",
            data: th.serialize()
        }).done(function (){
-           alert("Дякую!");
+           alert("Дякую за відгук!");
            setTimeout(function (){
-               th.trigger("reset");
+               th.trigger("Перезавантажити");
            }, 1000);
        });
        return false;
