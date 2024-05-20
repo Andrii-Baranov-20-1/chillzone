@@ -1,0 +1,269 @@
+/*--- Нормалізація блокової моделі ---*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/*--- Прибираємо внутрішні відступи зліва тегам списків, у яких є атрибут class ---*/
+:where(ul, ol):where([class]) {
+    padding-left: 0;
+}
+
+/*--- Прибираємо зовнішні відступи body і двом іншим тегам, у яких є атрибут class ---*/
+body,
+:where(blockquote, figure):where([class]) {
+    margin: 0;
+}
+
+/*--- Прибираємо зовнішні відступи вертикалі потрібним тегам, у яких є атрибут class ---*/
+:where(
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ul,
+  ol,
+  dl
+):where([class]) {
+    margin-block: 0;
+}
+
+:where(dd[class]) {
+    margin-left: 0;
+}
+
+:where(fieldset[class]) {
+    margin-left: 0;
+    padding: 0;
+    border: none;
+}
+
+/*--- Прибираємо стандартний маркер маркованого списку, у якого є атрибут class ---*/
+:where(ul[class]) {
+    list-style: none;
+}
+
+/*---
+  Обнуляємо вертикальні зовнішні відступи параграфа,
+  оголошуємо локальну змінну для зовнішнього відступу вниз,
+  щоб уникнути взаємодії з більш складним селектором
+---*/
+p {
+    --paragraphMarginBottom: 24px;
+
+    margin-block: 0;
+}
+
+/*---
+    Зовнішній відступ вниз для параграфа без атрибута class,
+    який розташований не останнім серед своїх сусідніх елементів
+---*/
+p:where(:not([class]):not(:last-child)) {
+    margin-bottom: var(--paragraphMarginBottom);
+}
+
+
+/*--- Спрощуємо роботу із зображеннями ---*/
+img {
+    display: block;
+    max-width: 100%;
+}
+
+/*--- Успадковуємо властивості шрифт для полів введення ---*/
+input,
+textarea,
+select,
+button {
+    font: inherit;
+}
+
+/*---
+    Стане в нагоді в більшості ситуацій
+    (коли, наприклад, потрібно буде "притиснути" футер до низу сайту)
+---*/
+html {
+    height: 100%;
+}
+
+/*--- Плавний скрол ---*/
+html,
+:has(:target) {
+    scroll-behavior: smooth;
+}
+
+body {
+/*---
+    Стане в нагоді в більшості ситуацій
+    (коли, наприклад, потрібно буде "притиснути" футер до низу сайту)
+---*/
+    min-height: 100%;
+/*--- Унифицированный интерлиньяж ---*/
+    line-height: 1.5;
+}
+
+/*--- Приводимо до єдиного кольору svg-елементи ---*/
+svg *[fill] { fill: currentColor }
+svg *[stroke] { stroke: currentColor }
+
+/*--- Чинимо баг затримки зміни кольору під час взаємодії зі svg-елементами ---*/
+svg * {
+    transition-property: fill, stroke;
+}
+
+/*---
+  Видаляємо всі анімації та переходи для людей,
+  які вважають за краще їх не використовувати
+---*/
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+/*--- Глобальная css переменная ---*/
+:root {
+    --color-dark: #2A2D36;
+    --color-light: #E3D9CF;
+
+    --border: 1px solid var(--color-dark);
+
+    --font-family-base: 'Open Sans', sans-serif;
+
+    --container-width: 1300px;
+    --container-padding-x: 15px;
+
+    --transition-duration: 0.2s;
+}
+body{
+    font-family: var(--font-family-base);
+    color: var(--color-dark);
+    font-size: 16px;
+    /*background: no-repeat center url('../img/bg.png');*/
+    background-size: cover;
+    /*background-position: left top;*/
+    background-color: var(--color-dark);
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 20px;
+    padding-inline: 150px;
+    background-color: rgba(227,217,207,50%);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+}
+.header-logo {
+    flex-shrink: 0;
+}
+.header-menu-list {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 78px;
+}
+.header-menu-link {
+    display: inline-flex;
+    align-items: center;
+    height: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 2px solid transparent;
+    transition: all .55s ease;
+}
+.header-menu-link:hover {
+    border-bottom: 2px solid var(--color-dark);
+}
+.header-menu a {
+    color: var(--color-dark);
+}
+.header-actions {
+    display: flex;
+    column-gap: 40px;
+}
+.button {
+    width: 7.6rem;
+    height: 2.25rem;
+    color: var(--color-light);
+    display: inline-flex;
+    align-items: center;
+    /*padding-inline: 5px;*/
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+    line-height: 2.2;
+    background-color: var(--color-dark);
+    border: none;
+    /*border-radius: var(--border-radius);*/
+    transition: all .55s ease;
+    text-decoration: none;
+}
+.button:hover {
+    background-color: var(--color-light);
+    border: var(--border);
+    color: var(--color-dark);
+}
+/*---Настільні комп'ютери та ноутбуки---*/
+@media (max-width: 1280px){
+
+}
+/*---Планшети (альбомна орієнтація)---*/
+@media (max-width: 1024px) {
+    .header {
+        flex-wrap: wrap;
+        row-gap: 0.625rem;
+        padding-inline: 3.125rem;
+    }
+    .header-menu-list {
+        column-gap: 2.125rem;
+    }
+}
+/*---Планшети (альбомна орієнтація)---*/
+@media (max-width: 768px) {
+    .header {
+        flex-wrap: wrap;
+        row-gap: 0.625rem;
+        padding-top: 0.938rem;
+        padding-inline: 0.938rem;
+    }
+    .header-menu {
+        order: 1;
+        flex-basis: 100%;
+    }
+    .header-menu-list {
+        column-gap: 3.375rem;
+        justify-content: center;
+    }
+    .header-menu-link {
+        height: 3.125rem;
+        color: var(--color-dark);
+    }
+    .header-menu-link:hover {
+        border-bottom: 0.125rem solid var(--color-dark);
+    }
+}
+/*---Мобільні пристрої (альбомна орієнтація)---*/
+@media (max-width: 667px) {
+    .header-menu-list {
+        column-gap: 44px;
+    }
+    .header-menu-link {
+        height: 40px;
+        font-size: 14px;
+        color: var(--color-dark);
+    }
+}
+/*--- Мобільні пристрої (портретна орієнтація) ---*/
+@media (max-width: 375px) {
+
+}
