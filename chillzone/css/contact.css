@@ -378,7 +378,7 @@ textarea{
 }
 .user-message{
     height: auto;
-    min-height: 200px;
+    min-height: 100px;
 }
 .submit {
     width: 100%;
