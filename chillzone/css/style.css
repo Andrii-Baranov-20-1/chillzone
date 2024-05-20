@@ -131,23 +131,21 @@ svg * {
     --color-dark: #2A2D36;
     --color-light: #E3D9CF;
 
-    --border: 1px solid var(--color-dark);
+    --border: 0.063rem solid var(--color-dark);
 
     --font-family-base: 'Open Sans', sans-serif;
 
-    --container-width: 1300px;
-    --container-padding-x: 15px;
+    --container-width: 81.25rem;
+    --container-padding-x: 0.938rem;
 
     --transition-duration: 0.2s;
 }
 body{
     font-family: var(--font-family-base);
     color: var(--color-dark);
-    font-size: 16px;
-    /*background: no-repeat center url('../img/bg.png');*/
-    background-size: cover;
-    /*background-position: left top;*/
-    background-color: var(--color-dark);
+    font-size: 1rem;
+    /*background: url('../img/bg.png') no-repeat center/cover;*/
+    background-color: var(--color-light);
 }
 .header {
     position: fixed;
@@ -157,10 +155,10 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    column-gap: 20px;
-    padding-inline: 150px;
+    column-gap: 1.25rem;
+    padding-inline: 9.375rem;
     background-color: rgba(227,217,207,50%);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(1.25rem);
     z-index: 1000;
 }
 .header-logo {
@@ -169,26 +167,26 @@ body{
 .header-menu-list {
     display: flex;
     flex-wrap: wrap;
-    column-gap: 78px;
+    column-gap: 4.875rem;
 }
 .header-menu-link {
     display: inline-flex;
     align-items: center;
-    height: 50px;
+    height: 3.125rem;
     text-decoration: none;
     font-weight: 700;
-    border-bottom: 2px solid transparent;
+    border-bottom: 0.125rem solid transparent;
     transition: all .55s ease;
 }
 .header-menu-link:hover {
-    border-bottom: 2px solid var(--color-dark);
+    border-bottom: 0.125rem solid var(--color-dark);
 }
 .header-menu a {
     color: var(--color-dark);
 }
 .header-actions {
     display: flex;
-    column-gap: 40px;
+    column-gap: 2.5rem;
 }
 .button {
     width: 7.6rem;
@@ -198,13 +196,12 @@ body{
     align-items: center;
     /*padding-inline: 5px;*/
     justify-content: center;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 500;
     white-space: nowrap;
     line-height: 2.2;
     background-color: var(--color-dark);
     border: none;
-    /*border-radius: var(--border-radius);*/
     transition: all .55s ease;
     text-decoration: none;
 }
@@ -213,9 +210,194 @@ body{
     border: var(--border);
     color: var(--color-dark);
 }
+.main{
+    padding-top: 3.125rem;
+    /*padding-inline: 9.375rem;*/
+}
+.first {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 50px);
+    min-height: 33.75rem;
+    /*height: 100vh;*/
+    /*min-height: 100vh;*/
+    position: relative;
+    /*display: grid;*/
+    /*grid-template-columns: repeat(2, 1fr);*/
+    align-items: center; /* Выравнивание по вертикали */
+    justify-content: center;
+    gap: 2rem;
+    background: url('../img/bg.png') no-repeat center/cover;
+    padding-inline: 9.375rem;
+}
+.section-menu {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    width: auto;
+    max-width: 50rem;
+    height: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-inline: 1rem;
+    background-color: rgba(42, 45, 54, 0.56);
+    color: var(--color-light);
+    backdrop-filter: blur(1.25rem);
+}
+.section-menu-second-text{
+    line-height: 2.2rem;
+}
+.first-button{
+    width: 9.375rem;
+    height: 3.125rem;
+    text-align: center;
+    display: flex; /* Добавляем flex контейнер для выравнивания по центру */
+    justify-content: center; /* Выравнивание по горизонтали */
+    align-items: center; /* Выравнивание по вертикали */
+}
+.first-button-link{
+    width: 100%;
+    height: 100%;
+    color: var(--color-light);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 1.25rem;
+    font-size: 1rem;
+    font-weight: 500;
+    white-space: nowrap;
+    line-height: 2;
+    background-color: var(--color-dark);
+    border: none;
+    /*border-radius: var(--border-radius);*/
+    transition: all .55s ease;
+    text-decoration: none;
+}
+.first-button-link:hover {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    border: var(--border);
+}
+.second {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 3.125rem);
+    min-height: 33.75rem;;
+    /*min-height: 100vh;*/
+    position: relative;
+    /*display: grid;*/
+    /*grid-template-columns: repeat(2, 1fr);*/
+    justify-content: center;
+    align-items: center;
+    padding-top: 6.25rem;
+    padding-bottom: 3.125rem;
+    gap: 4rem;
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    padding-inline: 9.375rem;
+}
+.second-text {
+    font-weight: 700;
+}
+.second-menu-text{
+}
+.swiper{
+    /*padding-inline: 273px;
+    width: 100%;
+    height: auto;*/
+    width: 67%;
+    height: auto;
+    min-height: 22.5rem;
+}
+.mySwiper{
+}
+.swiper-slide{
+    text-align: center;
+    font-size: 1.125rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*--- Слайдер під фото ---*/
+.swiper-pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*--- Зображення ---*/
+.swiper-slide img{
+    /*width: 80%;*/
+    /*object-fit: cover;*/
+    width: 100%; /* Ширина будет равна ширине слайда */
+    height: 100%; /* Высота будет равна высоте слайда */
+    object-fit: cover; /* Масштабирование изображения так, чтобы оно полностью заполняло свой контейнер без искажений */
+    object-position: right bottom; /* Положение изображения - справа внизу */
+    /*padding-bottom: 2%;*/
+    /*margin-bottom: 0px;*/
+}
+.swiper-button-next, .swiper-rtl .swiper-button-prev{
+    align-items: center;
+    right: 8.75rem !important;
+    left: auto;
+    transform: translate(50%, 200%);
+}
+.swiper-button-prev, .swiper-rtl .swiper-button-next{
+    left: 8.75rem !important;
+    right: auto;
+    transform: translate(50%, 200%);
+}
+/*--- Відображення кількості зображень ---*/
+.swiper-pagination-bullet {
+    width: 0.5rem; /* Установите нужную ширину */
+    height: 0.5rem; /* Установите нужную высоту */
+}
+.footer {
+    width: 100%;
+    height: 3.125rem;
+    /*position: absolute;*/
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    padding-inline: 9.375rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+.footer-menu {
+    display: flex;
+    align-items: center;
+}
+.footer-menu-icons-list{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1rem;
+}
+.footer-menu-link{
+    display: inline-flex;
+    align-items: center;
+    height: 3.125rem;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    border-bottom: 0.125rem solid transparent;
+    transition: all .55s ease;
+}
+.footer-menu-link img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
 /*---Настільні комп'ютери та ноутбуки---*/
 @media (max-width: 1280px){
-
+    .swiper{
+        /*padding-inline: 273px;
+        width: 100%;
+        height: auto;*/
+        width: 100%;
+        height: auto;
+    }
 }
 /*---Планшети (альбомна орієнтація)---*/
 @media (max-width: 1024px) {
@@ -226,6 +408,15 @@ body{
     }
     .header-menu-list {
         column-gap: 2.125rem;
+    }
+    .first, .second {
+        padding-inline: 3.125rem;
+    }
+    /*.main{
+        padding-inline: 3.125rem;
+    }*/
+    .footer{
+        padding-inline: 3.125rem;
     }
 }
 /*---Планшети (альбомна орієнтація)---*/
@@ -251,16 +442,42 @@ body{
     .header-menu-link:hover {
         border-bottom: 0.125rem solid var(--color-dark);
     }
+    .first, .second {
+        padding-inline: 0.938rem;
+    }
+    .main{
+        padding-top: 6.875rem;
+    }
+    .footer{
+        padding-inline: 0.938rem;
+    }
 }
+/*@media (max-height: 768px) {
+    .section-menu p{
+        display: none;
+    }
+}*/
 /*---Мобільні пристрої (альбомна орієнтація)---*/
 @media (max-width: 667px) {
     .header-menu-list {
-        column-gap: 44px;
+        column-gap: 2.75rem;
     }
     .header-menu-link {
-        height: 40px;
-        font-size: 14px;
+        height: 2.5rem;
+        font-size: 0.875rem;
         color: var(--color-dark);
+    }
+    .main{
+        padding-top: 6.25rem;
+    }
+    .section-menu p{
+        display: none;
+    }
+    .footer{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        min-height: 6.25rem;
     }
 }
 /*--- Мобільні пристрої (портретна орієнтація) ---*/
