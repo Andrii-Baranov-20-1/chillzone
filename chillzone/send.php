@@ -15,12 +15,12 @@ if (!error_get_last()) {
 
 
     //--- Формування самого листа
-    $title = "Заголовок письма";
+    $title = "Відгук із сайту ChillZone";
     $body = "
-    <h2>Новое письмо</h2>
-    <b>Имя:</b> $name<br>
-    <b>Почта:</b> $email<br><br>
-    <b>Сообщение:</b><br>$text
+    <h2>Новий лист</h2>
+    <b>Ім'я:</b> $name<br>
+    <b>Пошта:</b> $email<br><br>
+    <b>Повідомлення:</b><br>$text
     ";
 
     //--- Налаштування PHPMailer
@@ -29,7 +29,7 @@ if (!error_get_last()) {
     $mail->isSMTP();
     $mail->CharSet = "UTF-8";
     $mail->SMTPAuth   = true;
-    //$mail->SMTPDebug = 2;
+    //--- $mail->SMTPDebug = 2;
     $mail->Debugoutput = function($str, $level) {$GLOBALS['data']['debug'][] = $str;};
 
     //--- Налаштування вашої пошти
@@ -38,7 +38,7 @@ if (!error_get_last()) {
     $mail->Password   = 'nsob mgjw mlap dtrz'; //--- Пароль на пошті
     $mail->SMTPSecure = 'ssl';
     $mail->Port       = 465;
-    $mail->setFrom('235088@duan.edu.ua', 'Name'); //--- Адреса самої пошти та ім'я відправника
+    $mail->setFrom('235088@duan.edu.ua', 'Andrii'); //--- Адреса самої пошти та ім'я відправника
 
     //--- Одержувач листа
     $mail->addAddress('235088@duan.edu.ua');

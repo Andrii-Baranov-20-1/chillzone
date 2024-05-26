@@ -42,22 +42,22 @@
             <div class="section-about">
                 <h1 class="section-main-first-text">Зв'яжіться з нами!</h1>
                 <p class="section-main-second-text">Будь ласка, заповніть форму нижче, щоб зв'язатися з нами</p>
-                <form class="input-wrapper" method="post" id="form" onsubmit="submitForm(event)" action="send.php">
+                <form enctype="multipart/form-data" class="input-wrapper" method="post" id="form" onsubmit="submitForm(event)" action="send.php">
                     <div class="input-row">
                         <div class="input-group">
                             <label for="first_name">Ім'я:</label>
-                            <input class="name" type="text" id="first_name" placeholder="Представьтесь" name="name" />
+                            <input class="name" type="text" id="first_name" placeholder="Введіть ім'я" name="name" required/>
                         </div>
                         <div class="input-group">
                             <label for="user_email">E-mail:</label>
-                            <input class="email" type="email" id="user_email" name="email" />
+                            <input class="email" type="email" id="user_email" placeholder="Введіть пошту" name="email" required/>
                         </div>
                     </div>
                     <label for="user-message">Повідомлення:</label>
                     <!--                    <input class="user-send" type="text" id="user_send" name="user_send" /><br />-->
-                    <textarea class="text" id="user-message" name="text" rows="4" cols="50"></textarea>
-                    <p>Прикрепить файлы</p>
-                    <input type="file" name="myfile[]" multiple id="myfile">
+                    <textarea class="text" id="user-message" placeholder="Введіть повідомлення" name="text" rows="4" cols="50" required></textarea>
+                    <label for="user-message">Прикріпіть файли:</label>
+                    <input class="myfile" type="file" name="myfile[]" multiple id="myfile">
                     <input class="submit" type="submit" value="Надіслати" />
                 </form>
                 <!--                <a href="#" target="_blank">Бронюй зараз</a>-->
@@ -94,36 +94,7 @@
             </ul>
         </nav>
     </footer>
-    <script>
-        async function submitForm(event) {
-            event.preventDefault(); // отключаем перезагрузку/перенаправление страницы
-            try {
-                // Формируем запрос
-                const response = await fetch(event.target.action, {
-                    method: 'POST',
-                    body: new FormData(event.target)
-                });
-                // проверяем, что ответ есть
-                if (!response.ok) throw (`Ошибка при обращении к серверу: ${response.status}`);
-                // проверяем, что ответ действительно JSON
-                const contentType = response.headers.get('content-type');
-                if (!contentType || !contentType.includes('application/json')) {
-                    throw ('Ошибка. Ответ не JSON');
-                }
-                // обрабатываем запрос
-                const json = await response.json();
-                if (json.result === "success") {
-                    // в случае успеха
-                    alert(json.info);
-                } else {
-                    // в случае ошибки
-                    console.log(json.desc);
-                    throw (json.info);
-                }
-            } catch (error) { // обработка ошибки
-                alert(error);
-            }
-        }
-    </script>
+    <!-- JS -->
+    <script src="./js/submit.js"></script>
 </body>
 </html>
